@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+
+* {
+  font-family: 'League Gothic', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("back.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+  background-position-x: center;
+  height: 100vh;   
+} 
+
+.container {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imglogo2 {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.database {
+  color: rgb(182, 182, 182);
+  font-size: 30px;
+  font-family: 'League Gothic', sans-serif;
+  text-align: center;
+}
+
+.lista {
+  list-style: none;
+}
+
+.lista2 {
+  display: flex;
+}
+
+li,
+.textlist {
+  color: rgb(182, 182, 182);
+  text-decoration: none;
+  padding-top: 10px;
+  font-size: 35px;
+}
+
+li:hover {
+  color: white;
+}
+
+.textlist:hover {
+  color: white;
+}
+
+.contato {
+  margin: 5px 25px 0px 0px;
+  text-decoration: none;
+  color: rgb(182, 182, 182);
+  font-size: 25px;
+}
+
+@media (min-width: 300px) and (max-width: 1000px) {
+  .imglogo2 {
+    width: 245px;
+    margin: 0 auto;
+  }
+
+  .database {
+    font-size: 30px;
+    margin: 0 auto;
+  }
+
+  .textlist {
+    font-size: 30px;
+  }
+
+  .contato {
+    font-size: 30px;
+  }
+}

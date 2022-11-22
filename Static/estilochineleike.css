@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
+* {
+  font-family: "League Gothic", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: repeating-linear-gradient(90deg, hsla(352deg, 0%, 68%, 0.09) 0px, hsla(352deg, 0%, 68%, 0.09) 1px, transparent 1px, transparent 96px), repeating-linear-gradient(0deg, hsla(352deg, 0%, 68%, 0.09) 0px, hsla(352deg, 0%, 68%, 0.09) 1px, transparent 1px, transparent 96px), repeating-linear-gradient(0deg, hsla(352deg, 0%, 68%, 0.09) 0px, hsla(352deg, 0%, 68%, 0.09) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(90deg, hsla(352deg, 0%, 68%, 0.09) 0px, hsla(352deg, 0%, 68%, 0.09) 1px, transparent 1px, transparent 12px), linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0));
+  background-repeat: 1080px;
+  background-size: cover;
+  background-position-x: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imglogo2 {
+  width: 250px;
+}
+
+.database {
+  color: rgb(182, 182, 182);
+  font-size: 25px;
+  font-family: "League Gothic", sans-serif;
+  margin: 0 auto;
+}
+
+.lista {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.lista2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+li,
+.textlist {
+  color: rgb(182, 182, 182);
+  text-decoration: none;
+  margin-right: 17px;
+  font-size: 25px;
+}
+
+li:hover {
+  color: white;
+}
+
+.textlist:hover {
+  color: white;
+}
+
+.contato {
+  text-decoration: none;
+  color: rgb(182, 182, 182);
+  font-size: 18px;
+  margin-right: 17px;
+}
+
+.fotos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.fotoslide {
+  box-shadow: 1px 2px 5px black;
+  width: 420px;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.fotoslide:hover {
+  width: 450px;
+}
+
+@media (min-width: 300px) and (max-width: 1000px) {
+  .imglogo2 {
+    width: 550px;
+  }
+  .fotoslide {
+    width: 700px;
+  }
+  .fotoslide2 {
+    width: 700px;
+  }
+  .database {
+    font-size: 50px;
+    margin: 20px auto;
+  }
+  .textlist {
+    font-size: 55px;
+  }
+  li, .contato {
+    font-size: 55px;
+  }
+}/*# sourceMappingURL=estilochineleike.css.map */

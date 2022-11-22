@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8"/> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PEEM" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/0db4c44db2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="Static/estilo.css" />
+  <link rel="shortcut icon" href="favicon/android-chrome-192x192.png">
+  <link rel="preload" href="LOGOS/globo site.PNG" as="image">
+  <link rel="preload" href="back.jpg" as="image">
+
+  <title>PEEM</title> 
+
+</head>    
+
+<body>
+
+
+  <div class="container">
+
+    <div class="logo">
+      <img class="imglogo2" src="LOGOS/globo site.PNG">
+      <p class="database"><span id="datetime"></span> PEEM.BR</p>
+    </div>
+  
+    <header>
+    <div class="menu">
+
+      <nav>
+        <ul class="lista">
+          
+          <li><a class="textlist" href="indexratos.html">Ratos Treinados</a></li>
+          <li><a class="textlist" href="indexchineleike.html">Chineleike </a></li>
+          <li><a class="textlist" href="indexshop.html">Histórias</a></li>
+          <li><a class="textlist" href="indexfronteira.html">Promoções</a></li>
+          <li><a class="textlist" href="indexequipe.html">Staff</a></li>
+          
+        </ul>
+      </nav>
+
+    </div>
+    </header> 
+
+    <footer>
+
+      <nav>
+
+        <ul class="lista">
+          <div class="lista2"> 
+            <a class="contato" href="https://www.instagram.com/peem.br/" target="_blank"><li href="#"><i class="fa-brands fa-instagram"></i></li></a>
+            <a class="contato" href="https://open.spotify.com/playlist/3rFQSwoOiiedD82tOSyGAV" target="_blank"><li href="#"><i class="fa-brands fa-spotify"></i></li></a>
+            <a class="contato" href="indexcontato.html"><li href="#"><i class="fa-brands fa-whatsapp"></i></li></a>
+            <a class="contato" href="https://www.youtube.com/channel/UCrhlG_5rwOCTssLg2879lyQ" target="_blank"><li href="#"><i class="fa-brands fa-youtube"></i></li></a>
+           </div> 
+        </ul>
+      </nav>
+
+
+    </footer>
+
+  </div>
+
+  <script>
+    var dt = new Date();
+    document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"."+ (("0"+(dt.getMonth()+1)).slice(-2)) +"."+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+  </script>
+
+</body>
+
+</html>
+
