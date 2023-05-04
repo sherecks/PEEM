@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
+
+* {
+  font-family: 'League Gothic', sans-serif;
+}
+
+body {
+  margin: 0; 
+  padding: 0;
+  height: 100vh;
+  background-image: repeating-linear-gradient(
+      90deg,
+      hsla(352, 0%, 68%, 0.09) 0px,
+      hsla(352, 0%, 68%, 0.09) 1px,
+      transparent 1px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      hsla(352, 0%, 68%, 0.09) 0px,
+      hsla(352, 0%, 68%, 0.09) 1px,
+      transparent 1px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      hsla(352, 0%, 68%, 0.09) 0px,
+      hsla(352, 0%, 68%, 0.09) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      hsla(352, 0%, 68%, 0.09) 0px,
+      hsla(352, 0%, 68%, 0.09) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    linear-gradient(
+      90deg,
+      rgb(0, 0, 0),
+      rgb(0, 0, 0)
+    );
+  background-repeat: 1080px;
+  background-size: cover;
+  background-position-x: center;
+}
+
+#preloader{
+  display: flex;
+  background: #000000;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.triangle {
+  margin: 0 auto;
+  stroke-dasharray: 17;
+  animation: dash 2.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite;
+}
+
+
+@keyframes dash {
+  from{
+    stroke-dasharray: 17;
+  }
+  to {
+    stroke-dashoffset: 136;
+  }
+  0%{
+    stroke: #3aae6d;
+  }
+  100%{
+    stroke: #2d5ff5;
+  }
+}
+
+@keyframes into {
+  from {
+    justify-content: center;
+    width: 420px;
+  }
+
+  to {
+    width: 400px;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imglogo2 {
+  width: 500px;
+}
+
+.database {
+  color: rgb(182, 182, 182);
+  font-size: 25px;
+  font-family: 'League Gothic', sans-serif;
+  margin: 0;
+}
+
+.textcontato {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.text1 {
+  color: rgb(182, 182, 182);
+  font-size: 20px;
+  width: 260px;
+}
+
+.lista {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.lista2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+li,
+.textlist {
+  color: rgb(182, 182, 182);
+  text-decoration: none;
+  font-size: 25px;
+  margin-right: 17px;
+}
+
+li:hover {
+  color: white;
+}
+
+.textlist:hover {
+  color: white;
+}
+
+.contato {
+  text-decoration: none;
+  color: rgb(105, 105, 105);
+  font-size: 18px;
+  margin-right: 17px;
+}
+
+@media (min-width: 300px) and (max-width: 1000px) {
+  .imglogo2 {
+    width: 500px;
+  }
+
+  .database {
+    font-size: 40px;
+  }
+
+  .text1 {
+    font-size: 65px;
+    width: 550px;
+  }
+
+  .textlist {
+    font-size: 40px;
+  }
+
+  .contato {
+    font-size: 65px;
+  }
+
+  li, .textlist{
+    font-size: 60px;
+  }
+}

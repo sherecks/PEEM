@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
+* {
+  font-family: "League Gothic", sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  background-image: url("back.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+  background-position-x: center;
+  height: 100vh;
+}
+
+#preloader {
+  display: flex;
+  background: #000000;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.triangle {
+  margin: 0 auto;
+  stroke-dasharray: 17;
+  animation: dash 2.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite;
+}
+
+@keyframes dash {
+  from {
+    stroke-dasharray: 17;
+  }
+  to {
+    stroke-dashoffset: 136;
+  }
+  0% {
+    stroke: #3aae6d;
+  }
+  100% {
+    stroke: #2d5ff5;
+  }
+}
+@keyframes into {
+  from {
+    justify-content: center;
+    width: 420px;
+  }
+  to {
+    width: 400px;
+  }
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.imglogo2 {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.database {
+  color: rgb(182, 182, 182);
+  font-size: 30px;
+  font-family: "League Gothic", sans-serif;
+  text-align: center;
+}
+
+.lista {
+  list-style: none;
+}
+
+.lista2 {
+  display: flex;
+}
+
+li,
+.textlist {
+  color: rgb(182, 182, 182);
+  text-decoration: none;
+  padding-top: 10px;
+  font-size: 35px;
+}
+
+li:hover {
+  color: white;
+}
+
+.textlist:hover {
+  color: white;
+}
+
+.contato {
+  margin: 5px 25px 0px 0px;
+  text-decoration: none;
+  color: rgb(182, 182, 182);
+  font-size: 25px;
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+  .imglogo2 {
+    width: 235px;
+    margin: 0 auto;
+  }
+  .database {
+    font-size: 30px;
+    margin: 0 auto;
+  }
+  .textlist {
+    font-size: 30px;
+  }
+  .contato {
+    font-size: 30px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1440px) {
+  .imglogo2 {
+    width: 245px;
+    margin: 0 auto;
+  }
+  .database {
+    font-size: 25px;
+    margin: 0 auto;
+  }
+  li, .textlist {
+    font-size: 30px;
+    padding: 5px;
+  }
+  .contato {
+    font-size: 20px;
+  }
+}/*# sourceMappingURL=estilo.css.map */
