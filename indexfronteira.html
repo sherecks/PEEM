@@ -108,78 +108,70 @@
 
   <p class="textshop">R$75,00</p>
 
-    <!-- Set up a container element for the button -->
-    <div id="paypal-button-container"></div>
-
-    <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-
-  <script>
-        // Render the PayPal button into #paypal-button-container
-        paypal.Buttons({
-
-            style: {
-                color:  'blue',
-                shape:  'pill',
-                label:  'pay',
-                height: 40
-            },
-            
-            // Call your server to set up the transaction
-            createOrder: function(data, actions) {
-                return fetch('/demo/checkout/api/paypal/order/create/', {
-                    method: 'post'
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(orderData) {
-                    return orderData.id;
-                });
-            },
-
-            // Call your server to finalize the transaction
-            onApprove: function(data, actions) {
-                return fetch('/demo/checkout/api/paypal/order/' + data.orderID + '/capture/', {
-                    method: 'post'
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(orderData) {
-                    // Three cases to handle:
-                    //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-                    //   (2) Other non-recoverable errors -> Show a failure message
-                    //   (3) Successful transaction -> Show confirmation or thank you
-
-                    // This example reads a v2/checkout/orders capture response, propagated from the server
-                    // You could use a different API or structure for your 'orderData'
-                    var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
-
-                    if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
-                        return actions.restart(); // Recoverable state, per:
-                        // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
-                    }
-
-                    if (errorDetail) {
-                        var msg = 'Sorry, your transaction could not be processed.';
-                        if (errorDetail.description) msg += '\n\n' + errorDetail.description;
-                        if (orderData.debug_id) msg += ' (' + orderData.debug_id + ')';
-                        return alert(msg); // Show a failure message (try to avoid alerts in production environments)
-                    }
-
-                    // Successful capture! For demo purposes:
-                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                    var transaction = orderData.purchase_units[0].payments.captures[0];
-                    alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
-
-                    // Replace the above to show a success message within this page, e.g.
-                    // const element = document.getElementById('paypal-button-container');
-                    // element.innerHTML = '';
-                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                    // Or go to another URL:  actions.redirect('thank_you.html');
-                });
-            }
-
-        }).render('#paypal-button-container');
-  </script>
-
+     <!-- Replace "test" with your own sandbox Business account app client ID -->
+     <script src="https://www.paypal.com/sdk/js?client-id=AZ9VRWmViCSbqQfaJZdFlj2_7LAxMj5QD3WXG9wmW6DOMjP2ySYbofHlJdQAkImcYSGs3Xj2dMAfrSAW&currency=BRL"></script>
+     <!-- Set up a container element for the button -->
+     <div id="paypal-button-container"></div>
+    <script>
+       paypal
+         .Buttons({
+           // Sets up the transaction when a payment button is clicked
+           createOrder: function () {
+             return fetch("/my-server/create-paypal-order", {
+               method: "post",
+               headers: {
+                 "Content-Type": "application/json",
+               },
+               // use the "body" param to optionally pass additional order information
+               // like product skus and quantities
+               body: JSON.stringify({
+                 cart: [
+                   {
+                     sku: "10",
+                     quantity: "50",
+                   },
+                 ],
+               }),
+             })
+               .then((response) => response.json())
+               .then((order) => order.id);
+           },
+           // Finalize the transaction after payer approval
+           onApprove: function (data) {
+             return fetch("/my-server/capture-paypal-order", {
+               method: "post",
+               headers: {
+                 "Content-Type": "application/json",
+               },
+               body: JSON.stringify({
+                 orderID: data.orderID,
+               }),
+             })
+               .then((response) => response.json())
+               .then((orderData) => {
+                 // Successful capture! For dev/demo purposes:
+                 console.log(
+                   "Capture result",
+                   orderData,
+                   JSON.stringify(orderData, null, 2)
+                 );
+                 const transaction = orderData.purchase_units[0].payments.captures[0];
+                 alert(
+                   "Transaction " +
+                     transaction.status +
+                     ": " +
+                     transaction.id +
+                     "\n\nSee console for all available details"
+                 );
+                 // When ready to go live, remove the alert and show a success message within this page. For example:
+                 var element = document.getElementById('paypal-button-container');
+                 element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                 // Or go to another URL:  actions.redirect('thank_you.html');
+               });
+           },
+         })
+         .render("#paypal-button-container");
+    </script>
 
 
   <div class="container">
