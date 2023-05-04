@@ -45,6 +45,23 @@ body {
   background-position-x: center;
 }
 
+#paypal-button-container{
+  margin: 0 auto;
+}
+
+.slide-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fotoslide {
+  box-shadow: 1px 2px 5px black;
+  width: 320px;
+  margin: 5px auto;
+  border-radius: 10px;
+}
+
 #preloader{
   display: flex;
   background: #000000;
@@ -127,7 +144,7 @@ body {
 }
 
 .texttop{
-  font-size: 45px;
+  font-size: 30px;
 }
 
 .texttop2{

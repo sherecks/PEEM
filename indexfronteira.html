@@ -9,6 +9,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="PEEM" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <style>
+    /* Media query for mobile viewport */
+    @media screen and (max-width: 400px) {
+        #paypal-button-container {
+            width: 100%;
+        }
+    }
+    
+    /* Media query for desktop viewport */
+    @media screen and (min-width: 400px) {
+        #paypal-button-container {
+            width: 250px;
+        }
+    }
+  </style>
+
   <script src="https://kit.fontawesome.com/0db4c44db2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="Static/estilofronteira.css" />
   <link rel="shortcut icon" href="favicon/android-chrome-192x192.png">
@@ -74,17 +92,99 @@
 
     <div class="text1">
 
-      <h2>All Over the World</h2>
       <p class="texttop">Adquira uma peça com desconto ao publicar uma foto exclusiva e alucianante
         usando uma coleção antiga, marque a @peem.br no Instagram, assim
         estaremos todos conectados.
         25% de Desconto!!!
       </p>
 
-      <p class="texttop2">Promoção Valida na Nova Coleção 22/23.</p>
+      <p class="texttop2">Promoção Valida na Nova Coleção 23/24.</p>
     </div>
 
   </div>
+
+  <div class="slide">
+    <div class="slide-items">
+  
+        <a href='https://500px.com/photo/1063743679/img_0515-by-joao-pedro'>
+          <img id="image" class="fotoslide" src='https://drscdn.500px.org/photo/1063743679/m%3D900/v2?sig=a9e367d2fd37a655126c955eae77d3c9d28854e3d6d9709f414c3ac205b918ed'/>
+        </a>
+        
+      <link rel="preload" href="FOTOS PRODUTOS/Unalome Editadas/IMG_0515.JPG" as="image" media="(max-width: 300px)">
+    </div>
+  </div>
+
+    <!-- Set up a container element for the button -->
+    <div id="paypal-button-container"></div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+  <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            style: {
+                color:  'blue',
+                shape:  'pill',
+                label:  'pay',
+                height: 40
+            },
+            
+            // Call your server to set up the transaction
+            createOrder: function(data, actions) {
+                return fetch('/demo/checkout/api/paypal/order/create/', {
+                    method: 'post'
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(orderData) {
+                    return orderData.id;
+                });
+            },
+
+            // Call your server to finalize the transaction
+            onApprove: function(data, actions) {
+                return fetch('/demo/checkout/api/paypal/order/' + data.orderID + '/capture/', {
+                    method: 'post'
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(orderData) {
+                    // Three cases to handle:
+                    //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                    //   (2) Other non-recoverable errors -> Show a failure message
+                    //   (3) Successful transaction -> Show confirmation or thank you
+
+                    // This example reads a v2/checkout/orders capture response, propagated from the server
+                    // You could use a different API or structure for your 'orderData'
+                    var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
+
+                    if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
+                        return actions.restart(); // Recoverable state, per:
+                        // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
+                    }
+
+                    if (errorDetail) {
+                        var msg = 'Sorry, your transaction could not be processed.';
+                        if (errorDetail.description) msg += '\n\n' + errorDetail.description;
+                        if (orderData.debug_id) msg += ' (' + orderData.debug_id + ')';
+                        return alert(msg); // Show a failure message (try to avoid alerts in production environments)
+                    }
+
+                    // Successful capture! For demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    var transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                    // Replace the above to show a success message within this page, e.g.
+                    // const element = document.getElementById('paypal-button-container');
+                    // element.innerHTML = '';
+                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+                });
+            }
+
+        }).render('#paypal-button-container');
+  </script>
 
 
 
